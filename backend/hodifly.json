@@ -1,0 +1,9 @@
+{
+  "mode": "php",
+  "runtime": "php:8.2",
+  "docroot": "public",
+  "build": "",
+  "env": {
+    "required": ["CORS_ALLOWED_ORIGINS"]
+  }
+}

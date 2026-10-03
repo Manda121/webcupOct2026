@@ -1,6 +1,6 @@
 # Webnova
 
-Base de test avec un frontend Vue 3 organisé en composants et un backend PHP sans dépendances. Les anciennes fonctionnalités de gestion de budget ont été retirées.
+Base de test avec un frontend Vue 3 organisé en composants et un backend PHP avec Composer. Les anciennes fonctionnalités de gestion de budget ont été retirées.
 
 ## Structure
 
@@ -19,7 +19,9 @@ Prérequis : Node.js 20.19+ ou 22.12+, npm et PHP 8.1+.
 Dans un premier terminal, depuis la racine :
 
 ```sh
-php -S 127.0.0.1:8000 -t backend/public backend/public/index.php
+cd backend
+composer install
+composer start
 ```
 
 Dans un deuxième terminal :
@@ -43,6 +45,7 @@ php backend/tests/run.php
 Puis dans `frontend` :
 
 ```sh
+npm test
 npm run build
 ```
 
@@ -54,3 +57,7 @@ npm run build
 Les erreurs renvoient du JSON avec un statut 400, 404, 405 ou 422. Aucune base de données n'est nécessaire à cette étape.
 
 Le proxy est disponible avec `npm run dev`. Pour servir le build ou utiliser `npm run preview`, configurer un proxy `/api` vers PHP sur le serveur qui héberge le frontend.
+
+## Backend déployable
+
+Voir [les instructions du backend](backend/README.md) pour Composer, Hodifly et la connexion CORS avec un frontend hébergé séparément.

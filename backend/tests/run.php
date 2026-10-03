@@ -5,6 +5,7 @@ declare(strict_types=1);
 require dirname(__DIR__) . '/src/api.php';
 
 $cases = [
+    ['Application', 'GET', '/', '', 200, ['project' => 'Webnova', 'type' => 'API', 'health' => '/api/health']],
     ['Connexion', 'GET', '/api/health', '', 200, ['project' => 'Webnova', 'status' => 'ok', 'backend' => 'PHP']],
     ['Message', 'POST', '/api/echo', '{"message":" Bonjour Webnova ! "}', 200, ['project' => 'Webnova', 'message' => 'Bonjour Webnova !']],
     ['JSON invalide', 'POST', '/api/echo', '{', 400, null],
@@ -28,5 +29,22 @@ foreach ($cases as [$name, $method, $path, $body, $expectedStatus, $expectedData
     echo ($passed ? 'OK' : 'ECHEC') . ' — ' . $name . PHP_EOL;
     $failures += $passed ? 0 : 1;
 }
-echo count($cases) . ' tests, ' . $failures . ' échec(s).' . PHP_EOL;
+require dirname(__DIR__) . '/src/cors.php';
+$corsCases = [
+    ['Origine autorisée', 'https://webnova.example', 'https://webnova.example', true],
+    ['Plusieurs origines', 'https://webnova.example', 'https://autre.example, https://webnova.example', true],
+    ['Origine refusée', 'https://intrus.example', 'https://webnova.example', false],
+    ['Domaine ressemblant', 'https://webnova.example.intrus.test', 'https://webnova.example', false],
+    ['Sans origine', '', 'https://webnova.example', false],
+    ['Liste vide', 'https://webnova.example', '', false],
+];
+foreach ($corsCases as [$name, $origin, $allowed, $expected]) {
+    $headers = corsHeaders($origin, $allowed);
+    $passed = isset($headers['Access-Control-Allow-Origin']) === $expected
+        && (!$expected || $headers['Access-Control-Allow-Origin'] === $origin)
+        && $headers['Vary'] === 'Origin';
+    echo ($passed ? 'OK' : 'ECHEC') . ' — ' . $name . PHP_EOL;
+    $failures += $passed ? 0 : 1;
+}
+echo count($cases) + count($corsCases) . ' tests, ' . $failures . ' échec(s).' . PHP_EOL;
 exit($failures > 0 ? 1 : 0);

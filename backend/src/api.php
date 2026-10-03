@@ -5,12 +5,15 @@ declare(strict_types=1);
 /** @return array{0: int, 1: array<string, mixed>} */
 function handleRequest(string $method, string $path, string $body): array
 {
-    $routes = ['/api/health' => 'GET', '/api/echo' => 'POST'];
+    $routes = ['/' => 'GET', '/api/health' => 'GET', '/api/echo' => 'POST'];
     if (!isset($routes[$path])) {
         return [404, ['error' => 'Route introuvable.']];
     }
     if ($method !== $routes[$path]) {
         return [405, ['error' => 'Méthode non autorisée.']];
+    }
+    if ($path === '/') {
+        return [200, ['project' => 'Webnova', 'type' => 'API', 'health' => '/api/health']];
     }
     if ($path === '/api/health') {
         return [200, ['project' => 'Webnova', 'status' => 'ok', 'backend' => 'PHP']];

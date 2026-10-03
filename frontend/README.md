@@ -5,5 +5,6 @@ Frontend Vue 3 + Vite, organisé en composants. Les instructions de lancement et
 ```sh
 npm install
 npm run dev
+npm test
 npm run build
 ```
