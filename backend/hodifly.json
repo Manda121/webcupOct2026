@@ -1,9 +1,7 @@
 {
   "mode": "php",
   "runtime": "php:8.2",
+  "install": "composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction",
   "docroot": "public",
-  "build": "",
-  "env": {
-    "required": ["CORS_ALLOWED_ORIGINS"]
-  }
+  "build": ""
 }

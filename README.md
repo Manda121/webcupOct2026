@@ -16,7 +16,7 @@ La page vérifie le chargement Vue/JavaScript, les styles CSS et le fonctionneme
 
 Sur Hodifly : chemin du paquet `frontend`, type statique, runtime Node 22, build `npm run build`, sortie `dist`. Aucune variable d'environnement nécessaire. Voir [les instructions frontend](frontend/README.md).
 
-## Backend (pour plus tard)
+## Backend PHP indépendant
 
 Le backend PHP est conservé dans `backend`. Il n'est pas nécessaire de le démarrer ou de le déployer pour tester le frontend.
 
@@ -27,5 +27,7 @@ cd backend
 composer install
 composer start
 ```
+
+Sur Hodifly, créer un deuxième projet avec le chemin du paquet `backend`, mode PHP, runtime PHP 8.2 et docroot `public`. Aucune variable obligatoire pour tester le backend seul. Le fichier `backend/hodifly.json` configure son installation Composer.
 
 Tests PHP : `composer test`. Voir [les instructions backend](backend/README.md).
