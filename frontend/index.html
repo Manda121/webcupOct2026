@@ -3,11 +3,18 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Webnova — base de développement Vue et PHP.">
+    <meta name="description" content="Webnova — vérification du déploiement du frontend Vue.">
     <title>Webnova</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div style="max-width:720px;margin:64px auto;padding:24px;font-family:system-ui,sans-serif;color:#17243b">
+        <h1>Webnova</h1>
+        <p>La page HTML est chargée. Chargement de l’interface Vue…</p>
+        <p>Si ce message reste affiché, vérifiez que le déploiement contient le dossier <code>dist/assets</code> et que les fichiers JavaScript sont accessibles.</p>
+      </div>
+    </div>
+    <noscript>Activez JavaScript pour tester le frontend Webnova.</noscript>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

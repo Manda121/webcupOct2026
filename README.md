@@ -1,30 +1,8 @@
 # Webnova
 
-Base de test avec un frontend Vue 3 organisé en composants et un backend PHP avec Composer. Les anciennes fonctionnalités de gestion de budget ont été retirées.
+Projet organisé en composants Vue avec un backend PHP séparé. À cette étape, le frontend affiche uniquement une interface de vérification du déploiement ; il n'appelle pas le backend.
 
-## Structure
-
-- `frontend/src/components/layout/` : composants de mise en page.
-- `frontend/src/components/tests/` : interface des tests API.
-- `frontend/src/services/` : appels au backend.
-- `frontend/src/assets/` : styles.
-- `backend/public/` : point d'entrée HTTP.
-- `backend/src/` : logique de l'API.
-- `backend/tests/` : tests PHP.
-
-## Démarrer en local
-
-Prérequis : Node.js 20.19+ ou 22.12+, npm et PHP 8.1+.
-
-Dans un premier terminal, depuis la racine :
-
-```sh
-cd backend
-composer install
-composer start
-```
-
-Dans un deuxième terminal :
+## Frontend
 
 ```sh
 cd frontend
@@ -32,32 +10,22 @@ npm install
 npm run dev
 ```
 
-Ouvrir l'adresse indiquée par Vite. Le proxy Vite transmet `/api` au serveur PHP sur le port 8000. Utiliser « Tester la connexion » et « Envoyer » pour vérifier les échanges.
+Pour compiler : `npm run build`. Pour consulter le build localement : `npm run preview`.
 
-## Vérifications
+La page vérifie le chargement Vue/JavaScript, les styles CSS et le fonctionnement d'un bouton interactif. Un message HTML reste visible si les fichiers JavaScript ne se chargent pas.
 
-Depuis la racine :
+Sur Hodifly : chemin du paquet `frontend`, type statique, runtime Node 22, build `npm run build`, sortie `dist`. Aucune variable d'environnement nécessaire. Voir [les instructions frontend](frontend/README.md).
+
+## Backend (pour plus tard)
+
+Le backend PHP est conservé dans `backend`. Il n'est pas nécessaire de le démarrer ou de le déployer pour tester le frontend.
+
+Pour le lancer indépendamment :
 
 ```sh
-php backend/tests/run.php
+cd backend
+composer install
+composer start
 ```
 
-Puis dans `frontend` :
-
-```sh
-npm test
-npm run build
-```
-
-## API de test
-
-- `GET /api/health` : état du backend et nom du projet.
-- `POST /api/echo` : renvoie le message envoyé sous forme de JSON (`{"message":"Bonjour Webnova !"}`). Message requis, maximum 500 caractères.
-
-Les erreurs renvoient du JSON avec un statut 400, 404, 405 ou 422. Aucune base de données n'est nécessaire à cette étape.
-
-Le proxy est disponible avec `npm run dev`. Pour servir le build ou utiliser `npm run preview`, configurer un proxy `/api` vers PHP sur le serveur qui héberge le frontend.
-
-## Backend déployable
-
-Voir [les instructions du backend](backend/README.md) pour Composer, Hodifly et la connexion CORS avec un frontend hébergé séparément.
+Tests PHP : `composer test`. Voir [les instructions backend](backend/README.md).

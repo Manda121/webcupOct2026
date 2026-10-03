@@ -1,4 +1,5 @@
 :root {
+  --webnova-styles: ready;
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: #17243b;
   background: #f5f7fb;

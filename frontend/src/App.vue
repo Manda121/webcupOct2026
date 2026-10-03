@@ -1,6 +1,6 @@
 <script setup>
 import AppHeader from './components/layout/AppHeader.vue'
-import ApiTestPanel from './components/tests/ApiTestPanel.vue'
+import FrontendTestPanel from './components/tests/FrontendTestPanel.vue'
 </script>
 
 <template>
@@ -8,12 +8,12 @@ import ApiTestPanel from './components/tests/ApiTestPanel.vue'
     <AppHeader />
     <main>
       <section class="intro">
-        <span class="eyebrow">Base de développement</span>
-        <h1>Un nouveau départ pour Webnova.</h1>
-        <p>Une structure en composants Vue, un backend PHP et un espace pour tester leur connexion.</p>
+        <span class="eyebrow">Vérification du déploiement</span>
+        <h1>Webnova est en ligne.</h1>
+        <p>Cette page permet de vérifier le chargement et le fonctionnement du frontend.</p>
       </section>
-      <ApiTestPanel />
+      <FrontendTestPanel />
     </main>
-    <footer>Webnova · En développement</footer>
+    <footer>Webnova · Frontend de test</footer>
   </div>
 </template>

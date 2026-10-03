@@ -1,0 +1,6 @@
+{
+  "mode": "static",
+  "runtime": "node:22",
+  "build": "npm run build",
+  "output": "dist"
+}
